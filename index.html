@@ -177,12 +177,12 @@ section{position:relative}
 
 /* journey chapters */
 .journey{overflow:hidden;isolation:isolate}
-.jwrap{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:76px 28px}
+.jwrap{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(64px,9svh,76px) clamp(16px,3svh,28px)}
 .jhead{margin-bottom:clamp(.5rem,2svh,1.5rem)}
-.jhead .h2{font-size:clamp(2.2rem,4.8vw,4.2rem)}
+.jhead .h2{font-size:clamp(2rem,min(4.8vw,7svh),4.2rem)}
 .jbig{position:absolute;right:-1vw;top:8svh;z-index:-1;font-family:var(--display);font-weight:900;font-size:clamp(12rem,34vw,34rem);line-height:.8;letter-spacing:-.07em;color:transparent;-webkit-text-stroke:1.5px rgba(0,0,0,.07);overflow:hidden;height:.82em;pointer-events:none}
 .jbig span{display:block}
-.jtrack{display:flex;gap:clamp(1rem,2vw,1.5rem);padding-inline:max(1.25rem,calc((100vw - 1180px)/2));width:max-content;position:relative;padding-top:64px}
+.jtrack{display:flex;gap:clamp(1rem,2vw,1.5rem);padding-inline:max(1.25rem,calc((100vw - 1180px)/2));width:max-content;position:relative;padding-top:clamp(48px,7svh,64px)}
 .jrail{position:absolute;top:26px;height:2px;background:rgba(0,0,0,.08);border-radius:2px}
 .jrail .fill{position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left;border-radius:2px}
 .jrail .comet{position:absolute;top:50%;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--navy);box-shadow:0 0 0 6px rgba(31,51,88,.15),0 0 0 14px rgba(31,51,88,.06)}
@@ -190,12 +190,12 @@ section{position:relative}
 .jdot.on{background:var(--navy);border-color:var(--navy);scale:1.15}
 .jdot em{position:absolute;left:50%;bottom:18px;translate:-50% 0;font-style:normal;font-size:.75rem;color:var(--muted);white-space:nowrap;font-weight:600;transition:color .5s}
 .jdot.on em{color:var(--fg)}
-.panel{flex:none;width:clamp(290px,31vw,420px);min-height:clamp(300px,42svh,440px);background:var(--surface);border-radius:28px;padding:clamp(1.6rem,2.5vw,2.2rem);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:box-shadow .6s var(--ease)}
+.panel{flex:none;width:clamp(290px,31vw,420px);min-height:clamp(260px,38svh,440px);background:var(--surface);border-radius:28px;padding:clamp(1.25rem,min(2.5vw,3.5svh),2.2rem);display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:box-shadow .6s var(--ease)}
 .panel.lit{box-shadow:0 30px 60px -20px rgba(31,51,88,.28)}
 .panel .pin{display:flex;flex-direction:column;flex:1}
 .chap{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sand);margin-bottom:.6rem}
-.panel .yr{font-family:var(--display);font-weight:800;font-size:clamp(3.6rem,6vw,5.4rem);line-height:.9;letter-spacing:-.06em;margin-bottom:auto;padding-bottom:2rem}
-.role{padding-top:1rem;margin-top:1rem;border-top:1px solid var(--line)}
+.panel .yr{font-family:var(--display);font-weight:800;font-size:clamp(3rem,min(6vw,10svh),5.4rem);line-height:.9;letter-spacing:-.06em;margin-bottom:auto;padding-bottom:clamp(.75rem,3svh,2rem)}
+.role{padding-top:clamp(.6rem,1.6svh,1rem);margin-top:clamp(.6rem,1.6svh,1rem);border-top:1px solid var(--line)}
 .role:first-of-type{border-top:0;margin-top:0}
 .role h4{font-family:var(--display);font-size:1.12rem;font-weight:700;line-height:1.25;letter-spacing:-.015em}
 .role p{color:var(--muted);font-size:.92rem;margin-top:.25rem;line-height:1.4}
@@ -555,8 +555,8 @@ const POSES = [
 ];
 const J = [
   ['2011', [['BCA','First Class with Distinction','2011–2014','study']]],
-  ['2015', [['Software Engineer','Enggrave Infosystem','2015–2018','work'],['Hardware and Network Engineer','Practical Assistant, L J College of Computer Applications','2015–2018','work'],['PGDCA','First Class','2015–2016','study']]],
-  ['2015', [['Assistant Coordinator, BCA','Gujarat University Examination Assessment Centre','2015–2018','work']]],
+  ['2015', [['Software Engineer','Enggrave Infosystem','2015–2018','work'],['Hardware and Network Engineer','Practical Assistant, L J College of Computer Applications','2015–2018','work']]],
+  ['2015', [['Assistant Coordinator, BCA','Gujarat University Examination Assessment Centre','2015–2018','work'],['PGDCA','First Class','2015–2016','study']]],
   ['2016', [['MCA','First Class','2016–2018','study']]],
   ['2018', [['Assistant Professor','Promoted at L J College of Computer Applications','2018–now','work']]],
   ['2021', [['Expert Guest Faculty','L J School of Computer Applications, L J University','2021–now','work'],['Assistant Coordinator','IGNOU Study Centre 0920, L J Commerce College','2021–now','work']]],

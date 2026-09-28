@@ -351,6 +351,8 @@ html:not(.fx) .jbar,html:not(.fx) .jm-bar{display:none}
 .tlink:hover{text-decoration:underline}
 footer{border-top:1px solid var(--line);padding-block:1.6rem;font-size:.8rem;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--fg);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line);transition:text-decoration-color .3s}
+footer a:hover{text-decoration-color:currentColor}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
@@ -537,7 +539,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   </div>
 </section>
 </main>
-<footer><div class="wrap"><span>© 2026 Parth D. Joshi</span><span>Ahmedabad, Gujarat</span></div></footer>
+<footer><div class="wrap"><span>© 2026 Parth D. Joshi</span><span>Ahmedabad, Gujarat</span><span>Designed &amp; developed by <a href="https://meetdave-portfolio.vercel.app" target="_blank" rel="noopener">Meet G. Dave</a></span></div></footer>
 
 <script>
 (() => {

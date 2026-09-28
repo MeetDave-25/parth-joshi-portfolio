@@ -75,11 +75,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .word{white-space:nowrap;--n:9}
 .word span{display:inline-block;font-family:var(--display);font-weight:900;font-size:min(21rem,calc(94vw / (var(--n) * .66)));letter-spacing:-.06em;color:var(--fg)}
 .word span.o{color:transparent;-webkit-text-stroke:2px var(--fg)}
-.stage{position:absolute;left:0;right:0;bottom:0;height:min(84svh,960px);z-index:2;pointer-events:none}
+.stage{position:absolute;left:0;right:0;bottom:0;height:min(84svh,calc(100svh - 150px),960px);z-index:2;pointer-events:none}
 .pose{position:absolute;inset:0}
 .pose .sl{position:absolute;top:0;bottom:0;overflow:hidden;clip-path:inset(0 0 100% 0)}
 .pose .in{position:absolute;top:0;height:100%}
-.pose img{position:absolute;bottom:0;left:50%;translate:-50% 0;height:100%;width:auto;max-width:none;filter:drop-shadow(0 30px 40px rgba(0,0,0,.18))}
+.pose img{position:absolute;bottom:0;left:0;right:0;margin-inline:auto;height:100%;width:auto;max-width:none;filter:drop-shadow(0 30px 40px rgba(0,0,0,.18))}
 .pose.first .sl{clip-path:inset(0 0 0 0)}
 html:not(.fx) .pose:not(.first){display:none}
 .shadow{position:absolute;left:50%;bottom:1.5%;width:min(420px,70vw);height:40px;translate:-50% 0;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.22),transparent 70%);z-index:1}
@@ -102,7 +102,6 @@ html:not(.fx) .ctrl,html:not(.fx) .bars{display:none}
   .cap{left:1.25rem;right:1.25rem;bottom:calc(3.2rem + env(safe-area-inset-bottom,0px));max-width:none;text-align:center}
   .cap p{max-width:32ch;margin-inline:auto}
   .cap p{font-size:1rem}
-  .hint{bottom:calc(18svh + .75rem)}
   .ctrl{display:none}
 }
 
@@ -117,6 +116,7 @@ html:not(.fx) .ctrl,html:not(.fx) .bars{display:none}
 .hint i{width:7px;height:7px;border-radius:50%;background:var(--navy);animation:ping 1.6s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,51,88,.5)}100%{box-shadow:0 0 0 9px rgba(31,51,88,0)}}
 html:not(.fx) .hint{display:none}
+@media (max-width:760px){.hint{display:none}}
 
 /* image trail */
 .trail{position:relative;height:100svh;min-height:560px;overflow:hidden;display:grid;place-items:center;text-align:center;background:#FFFFFF;touch-action:pan-y}
@@ -481,7 +481,7 @@ footer a:hover{text-decoration-color:currentColor}
   </div>
 </section>
 
-<section class="sec" id="skills">
+<section class="sec" id="skills" style="overflow-x:clip">
   <div class="wrap">
     <p class="kick">The toolkit</p>
     <h2 class="h2 rv" style="margin-bottom:clamp(2.5rem,5vw,4rem)">Taught from the inside.</h2>

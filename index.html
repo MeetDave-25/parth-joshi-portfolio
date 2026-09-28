@@ -102,6 +102,7 @@ html:not(.fx) .ctrl,html:not(.fx) .bars{display:none}
   .cap{left:1.25rem;right:1.25rem;bottom:calc(3.2rem + env(safe-area-inset-bottom,0px));max-width:none;text-align:center}
   .cap p{max-width:32ch;margin-inline:auto}
   .cap p{font-size:1rem}
+  .hint{bottom:calc(18svh + .75rem)}
   .ctrl{display:none}
 }
 
@@ -112,7 +113,7 @@ html:not(.fx) .ctrl,html:not(.fx) .bars{display:none}
 .lens img{position:absolute;bottom:0;left:50%;translate:-50% 0;height:100%;width:auto;max-width:none}
 .lring{position:absolute;z-index:6;left:0;top:0;width:calc(var(--r) * 2);height:calc(var(--r) * 2);margin:calc(var(--r) * -1) 0 0 calc(var(--r) * -1);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);box-shadow:0 20px 50px rgba(31,51,88,.35);pointer-events:none;--r:0px;opacity:0}
 .lring span{position:absolute;left:50%;top:100%;translate:-50% 8px;white-space:nowrap;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);background:#fff;padding:.3rem .6rem;border-radius:999px}
-.hint{display:inline-flex;align-items:center;gap:.45rem;margin-top:.7rem;font-size:.78rem;color:var(--navy);font-weight:600;background:rgba(255,255,255,.7);border:1px solid var(--line);padding:.3rem .75rem;border-radius:999px}
+.hint{position:absolute;left:50%;translate:-50% 0;bottom:calc(3.6rem + env(safe-area-inset-bottom,0px));z-index:6;white-space:nowrap;pointer-events:none;display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--navy);font-weight:600;background:rgba(255,255,255,.7);border:1px solid var(--line);padding:.3rem .75rem;border-radius:999px}
 .hint i{width:7px;height:7px;border-radius:50%;background:var(--navy);animation:ping 1.6s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(31,51,88,.5)}100%{box-shadow:0 0 0 9px rgba(31,51,88,0)}}
 html:not(.fx) .hint{display:none}
@@ -374,7 +375,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 <main id="top">
 <section class="hero" id="hero" aria-roledescription="carousel" aria-label="Parth D. Joshi, four roles">
-  <div class="hname"><h1>Parth D. Joshi</h1><p>Ahmedabad, India</p><span class="hint" id="hint"><i></i><span id="hinttx">Hover over Parth to see the blueprint</span></span></div>
+  <div class="hname"><h1>Parth D. Joshi</h1><p>Ahmedabad, India</p></div>
+  <span class="hint" id="hint"><i></i><span id="hinttx">Hover over Parth to see the blueprint</span></span>
   <div class="word" id="word" aria-live="polite"></div>
   <div class="shadow" aria-hidden="true"></div>
   <div class="stage" id="stage"></div>
@@ -736,7 +738,7 @@ if (FINE) hero.addEventListener('pointermove', e => {
 const ldEl = $('#ld'); ldEl.innerHTML = [...ldEl.textContent].map(c => `<span>${c === ' ' ? '&nbsp;' : c}</span>`).join('');
 gsap.set('#ld span', {yPercent:110});
 gsap.set('#nav', {yPercent:-100});
-gsap.set(['.hname','#cap','.ctrl','.bars'], {opacity:0, y:20});
+gsap.set(['.hname','#hint','#cap','.ctrl','.bars'], {opacity:0, y:20});
 gsap.set('#word', {opacity:0});
 posesP.then(() => {
   const first = $$('.pose')[0];
@@ -750,7 +752,7 @@ posesP.then(() => {
     .fromTo('#word span', {yPercent:110}, {yPercent:0, duration:1.2, stagger:.04, ease:'expo.out'}, 1.9)
     .fromTo(first.querySelectorAll('.sl'), {clipPath:(i) => i % 2 ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)'}, {clipPath:'inset(0% 0 0% 0)', duration:1.3, stagger:.08, ease:'expo.inOut'}, 2.1)
     .fromTo(first.querySelectorAll('img'), {scale:1.15}, {scale:1, duration:2, ease:'expo.out'}, 2.1)
-    .to(['.hname','#cap','.ctrl','.bars'], {opacity:1, y:0, duration:1, stagger:.08, ease:'expo.out'}, 2.8)
+    .to(['.hname','#hint','#cap','.ctrl','.bars'], {opacity:1, y:0, duration:1, stagger:.08, ease:'expo.out'}, 2.8)
     .to('#nav', {yPercent:0, duration:1, ease:'expo.out'}, 2.9)
     .add(() => { runBar(); if (lenis) lenis.start(); ready(); if (!FINE) setTimeout(sweep, 600); }, 3.2);
 });

@@ -353,8 +353,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer a{color:var(--fg);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line);transition:text-decoration-color .3s}
 footer a:hover{text-decoration-color:currentColor}
 
-/* signature layer: cursor, marquee band, grain */
-#stage,#word,.jtrack,.mq-track{will-change:transform}
+/* signature layer: cursor, grain */
+#stage,#word,.jtrack{will-change:transform}
 .cur,.cur-dot{position:fixed;left:0;top:0;z-index:200;pointer-events:none;border-radius:50%;display:none}
 html.fine .cur{display:grid;place-items:center}
 html.fine .cur-dot{display:block}
@@ -367,12 +367,6 @@ html.fine,html.fine a,html.fine button,html.fine [role=button]{cursor:none}
 .cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:#B3141C;border-color:#B3141C;mix-blend-mode:normal;box-shadow:0 8px 24px -8px rgba(179,20,28,.6)}
 .cur.big span{opacity:1}
 .cur.hide,.cur-dot.hide,.cur.big + .cur-dot{opacity:0}
-.mqw{overflow:clip;padding-block:clamp(2.5rem,6vw,5rem)}
-.mq{background:var(--fg);color:#F5F5F7;padding-block:clamp(.9rem,2vw,1.5rem);rotate:-2.5deg;scale:1.06;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
-.mq-track{display:flex;align-items:center;width:max-content;white-space:nowrap}
-.mq-track span{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,7vw,6.2rem);letter-spacing:-.05em;line-height:1;padding-inline:.32em}
-.mq-track span.o{color:var(--sand)}
-.mq-track i{font-style:normal;color:#E0262F;font-size:clamp(1.4rem,3.6vw,3.2rem)}
 .grain{position:fixed;inset:0;z-index:150;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
@@ -409,8 +403,6 @@ html.fine,html.fine a,html.fine button,html.fine [role=button]{cursor:none}
   </div>
   <div class="bars" id="bars"></div>
 </section>
-
-<div class="mqw" aria-hidden="true"><div class="mq"><div class="mq-track" id="mq"><span>Professor</span><i>✦</i><span class="o">Founder</span><i>✦</i><span>Author</span><i>✦</i><span class="o">Mentor</span><i>✦</i><span>Engineer</span><i>✦</i></div></div></div>
 
 <section class="sec statement" id="statement">
   <div class="wrap"><p id="stline">A professor who still ships software. An author who still codes. A mentor who is still learning, and has been for over a decade.</p></div>
@@ -950,23 +942,6 @@ function ready(){
   gsap.from('.al', {opacity:0, y:50, duration:1.2, ease:'expo.out', stagger:.1, scrollTrigger:{trigger:'.alist', start:'top 90%'}});
   gsap.fromTo('#cta', {scale:1.3, opacity:0}, {scale:1, opacity:1, ease:'power2.out', scrollTrigger:{trigger:'#contact', start:'top 85%', end:'center 60%', scrub:1}});
   gsap.from('#contact p, #contact .acts', {opacity:0, y:30, stagger:.12, duration:1.2, ease:'expo.out', scrollTrigger:{trigger:'#contact', start:'top 45%'}});
-  /* marquee: drifts on its own, speeds up, flips and leans with scroll velocity */
-  const mq = $('#mq');
-  if (mq) {
-    mq.innerHTML += mq.innerHTML + mq.innerHTML;
-    let x = 0, dir = -1, v = 0, w = mq.scrollWidth / 3, on = false;
-    addEventListener('resize', () => w = mq.scrollWidth / 3);
-    new IntersectionObserver(es => on = es[0].isIntersecting).observe(mq);
-    if (lenis) lenis.on('scroll', l => { v = l.velocity; if (Math.abs(v) > .3) dir = v > 0 ? -1 : 1; });
-    const skew = gsap.quickTo(mq, 'skewX', {duration:.6, ease:'power3'});
-    gsap.ticker.add((t, dt) => {
-      v *= .92; if (!on) return;
-      x += dir * (1 + Math.min(Math.abs(v), 40) * .35) * dt * .05;
-      if (x <= -w) x += w; if (x > 0) x -= w;
-      gsap.set(mq, {x}); skew(gsap.utils.clamp(-10, 10, -v * .35));
-    });
-  }
-
   if (FINE) {
     /* magnetic buttons */
     $$('.pill, .ctrl button, .tlink').forEach(b => {

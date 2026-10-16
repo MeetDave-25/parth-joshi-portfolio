@@ -359,11 +359,12 @@ footer a:hover{text-decoration-color:currentColor}
 html.fine .cur{display:grid;place-items:center}
 html.fine .cur-dot{display:block}
 html.fine,html.fine a,html.fine button,html.fine [role=button]{cursor:none}
-.cur-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:#fff;mix-blend-mode:difference}
-.cur{width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid #fff;mix-blend-mode:difference;transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background .35s,border-color .35s,opacity .3s}
-.cur span{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;white-space:nowrap;opacity:0;transition:opacity .25s}
-.cur.link{width:62px;height:62px;margin:-31px 0 0 -31px;background:#fff}
-.cur.big{width:92px;height:92px;margin:-46px 0 0 -46px;background:#B3141C;border-color:#B3141C;mix-blend-mode:normal}
+.cur-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:#fff;mix-blend-mode:difference;transition:opacity .25s}
+.cur{width:22px;height:22px;margin:-11px 0 0 -11px;border:1px solid rgba(255,255,255,.85);mix-blend-mode:difference;transition:width .45s var(--ease),height .45s var(--ease),margin .45s var(--ease),background .3s,border-color .3s,opacity .3s,scale .25s var(--ease)}
+.cur span{font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;white-space:nowrap;opacity:0;transition:opacity .2s}
+.cur.link{width:34px;height:34px;margin:-17px 0 0 -17px;mix-blend-mode:normal;border:1.5px solid rgba(170,170,176,.95);background:rgba(170,170,176,.16)}
+.cur.down{scale:.75}
+.cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:#B3141C;border-color:#B3141C;mix-blend-mode:normal;box-shadow:0 8px 24px -8px rgba(179,20,28,.6)}
 .cur.big span{opacity:1}
 .cur.hide,.cur-dot.hide,.cur.big + .cur-dot{opacity:0}
 .mqw{overflow:clip;padding-block:clamp(2.5rem,6vw,5rem)}
@@ -998,6 +999,8 @@ function ready(){
     }, {passive:true});
     if (lenis) lenis.on('scroll', () => look(px, py, document.elementFromPoint(px, py)));
     document.addEventListener('pointerleave', () => { cur.classList.add('hide'); dot.classList.add('hide'); });
+    addEventListener('pointerdown', () => cur.classList.add('down'));
+    addEventListener('pointerup', () => cur.classList.remove('down'));
   }
   ScrollTrigger.refresh();
 }
